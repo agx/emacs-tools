@@ -2,4 +2,7 @@
 (global-set-key (kbd "C-, u") 'uncomment-region)
 (global-set-key (kbd "C-, w") 'delete-trailing-whitespace)
 (global-set-key (kbd "C-, r") 'revert-buffer)
-
+(global-set-key (kbd "C-, K") 'kill-rectangle)
+(global-set-key (kbd "C-, e") 'eval-region)
+(global-set-key (kbd "C-, a") 'align-regexp)
+(global-set-key (kbd "C-, s") 'delete-trailing-whitespace)
