@@ -17,7 +17,7 @@
     (markdown-insert-reference-link text "" url "")))
 
 (defun blog-insert-debian-bts-markdown-link ()
-  "Read CVE/DSA number and create link to security tracker"
+  "Read number and create link to Debian BTS"
   (interactive)
   (let* (
          (bounds (or (and (markdown-use-region-p)
