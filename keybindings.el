@@ -13,3 +13,5 @@
 (global-set-key (kbd "C-, a") 'align-regexp)
 (global-set-key (kbd "C-, s") 'delete-trailing-whitespace)
 (global-set-key (kbd "C-, c") 'xcpu-commit-current-file)
+(global-set-key (kbd "C-, C") 'blog-insert-cve-markdown-link)
+(global-set-key (kbd "C-, D") 'blog-insert-debian-bts-markdown-link)
