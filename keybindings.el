@@ -15,3 +15,5 @@
 (global-set-key (kbd "C-, c") 'xcpu-commit-current-file)
 (global-set-key (kbd "C-, C") 'blog-insert-cve-markdown-link)
 (global-set-key (kbd "C-, D") 'blog-insert-debian-bts-markdown-link)
+(global-set-key (kbd "C-, g") 'vc-git-grep)
+(global-set-key (kbd "C-, b") 'xcpu-deb-open-bug)
