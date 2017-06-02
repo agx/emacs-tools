@@ -26,5 +26,6 @@
 (global-set-key (kbd "C-, B") 'xcpu-deb-open-bts)
 (global-set-key (kbd "C-, T") 'xcpu-deb-open-tracker)
 (global-set-key (kbd "C-, S") 'xcpu-deb-open-security-tracker)
+(global-set-key (kbd "C-, L") 'xcpu-deb-add-dla-needed)
 
 (global-set-key (kbd "C-< C-<") 'xcpu-thank-ack)
