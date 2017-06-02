@@ -7,7 +7,7 @@
 (defun xcpu-thank-ack ()
   (interactive)
   (search-forward "> ACK")
-  (insert "\n\nApplied. Thanks\n -- Guido\n")
+  (insert "\n\nPushed. Thanks\n -- Guido\n")
   (backward-char 4))
 
 (global-set-key (kbd "C-, c") 'comment-region)
