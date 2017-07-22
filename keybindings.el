@@ -1,5 +1,6 @@
 (defun xcpu-commit-current-file ()
   (interactive)
+  (save-buffer)
   (magit-stage-file (magit-file-relative-name))
   (magit-commit)
   )
