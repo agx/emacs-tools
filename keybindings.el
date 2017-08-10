@@ -11,6 +11,13 @@
   (insert "\n\nPushed. Thanks\n -- Guido\n")
   (backward-char 4))
 
+(defun xcpu-thank-push ()
+  (interactive)
+  (re-search-forward "^> -- ")
+  (backward-char 5)
+  (insert "\nPushed. Thanks\n -- Guido\n\n"))
+
+
 (global-set-key (kbd "C-, c") 'comment-region)
 (global-set-key (kbd "C-, u") 'uncomment-region)
 (global-set-key (kbd "C-, w") 'delete-trailing-whitespace)
@@ -29,4 +36,5 @@
 (global-set-key (kbd "C-, S") 'xcpu-deb-open-security-tracker)
 (global-set-key (kbd "C-, L") 'xcpu-deb-add-dla-needed)
 
-(global-set-key (kbd "C-< C-<") 'xcpu-thank-ack)
+(global-set-key (kbd "C-< <") 'xcpu-thank-ack)
+(global-set-key (kbd "C-< .") 'xcpu-thank-push)
