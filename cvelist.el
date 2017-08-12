@@ -8,6 +8,8 @@
 ;; (setq auto-mode-alist
 ;;     (cons '("list" . debian-cvelist-mode) auto-mode-alist))
 
+(defvar cve_classifiers '("unfixed" "no-dsa" "end-of-life" "not-affected" "removed" "undetermined") "valid cve classifiers")
+
 (defun debian-cvelist-insert-not-for-us ()
   "Insert NOT-FOR-US keyword"
   (interactive)
@@ -18,10 +20,49 @@
   (interactive)
   (insert "\tNOTE: "))
 
+(defun _debian-cvelist-next-classification (cls)
+  (let* ((c (member cls cve_classifiers)))
+    (if c
+	(if (> (length c) 1)
+	    (car (cdr c))
+	  (car cve_classifiers))
+      (car cve_classifiers))))
+
+;; cycle through available classifiations from above
+(defun _debian-cvelist-cycle-classification (line)
+  "Cycle the classification of an issue"
+  (setq classifiers_ (copy-sequence cve_classifiers))
+  (while classifiers_
+    (let* ((clf (car classifiers_))
+	   (next (_debian-cvelist-next-classification clf))
+	   )
+      (when (string-match (format "<%s>" clf) line)
+	(setq ret (replace-match (format "<%s>" next) t t line)))
+      )
+    (setq classifiers_ (cdr classifiers_)))
+  ret
+  )
+
+;; cycle through classifiations on current line
+(defun debian-cvelist-cycle-classification-in-line ()
+  (interactive)
+  (save-excursion
+    (beginning-of-line)
+    (let ((line (_debian-cvelist-cycle-classification (thing-at-point 'line)))
+	  (beg (point)))
+      (end-of-line)
+      (delete-region beg (point))
+      (insert line)
+      (delete-char -1)
+      )
+    )
+  )
+
 (defvar debian-cvelist-mode-map
    (let ((map (make-sparse-keymap)))
      (define-key map (kbd "C-c C-f") 'debian-cvelist-insert-not-for-us)
      (define-key map (kbd "C-c C-n") 'debian-cvelist-insert-note)
+     (define-key map (kbd "C-c C-c") 'debian-cvelist-cycle-classification-in-line)
      map)
    "Keymap for `debian-cvelist-mode'.")
 
