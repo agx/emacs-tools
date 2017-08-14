@@ -8,6 +8,7 @@
 (defun xcpu-thank-ack ()
   (interactive)
   (search-forward "> ACK")
+  (end-of-line)
   (insert "\n\nPushed. Thanks\n -- Guido\n")
   (backward-char 4))
 
