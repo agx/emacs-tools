@@ -11,6 +11,9 @@
 (defun _xcpu-current-line-quoted-p ()
   (eq 0 (string-match-p "^\\(> *\\)" (thing-at-point 'line))))
 
+(defun _xcpu-end-of-buffer-p ()
+  (eq (char-after (point)) nil))
+
 (defun xcpu-reply-mail ()
   "Skip over header and look for first paragraph to reply to when answering mail"
   (interactive)
@@ -30,7 +33,8 @@
     (forward-line 2)
     ;; search for first quoted line that is empty 
     (when (_xcpu-current-line-quoted-p)
-      (while (not (_xcpu-current-line-quoted-empty-p))
+      (while (and (not (_xcpu-current-line-quoted-empty-p))
+                  (not (_xcpu-end-of-buffer-p)))
 	(forward-line 1)
 	(beginning-of-line)
 	))
